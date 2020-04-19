@@ -23,8 +23,9 @@ public abstract class Person {
      String salt;
      Contact contact;
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     Person(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName,
-           String password,String salt, Contact contact) {
+           String password, Contact contact) {
         this.salt = PasswordUtil.getSalt(password.length());
         this.id = id;
         this.firstName = firstName;
@@ -34,7 +35,7 @@ public abstract class Person {
         this.contact = contact;
         this.userName = userName;
         this.password = PasswordUtil.generateSecurePassword(password, salt);
-        this.age = setAge();
+        this.age = this.setAge();
     }
 
     String getFullName() {

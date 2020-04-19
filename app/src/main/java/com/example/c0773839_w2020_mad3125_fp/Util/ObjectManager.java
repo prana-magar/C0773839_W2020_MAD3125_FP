@@ -1,14 +1,21 @@
 package com.example.c0773839_w2020_mad3125_fp.Util;
 
+import android.os.Build;
+
+import androidx.annotation.RequiresApi;
+
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.HydroBill;
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.InternetBill;
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.MobileBill;
+import com.example.c0773839_w2020_mad3125_fp.Model.Contact;
 import com.example.c0773839_w2020_mad3125_fp.Model.Customer;
+import com.example.c0773839_w2020_mad3125_fp.Model.Gender;
 import com.example.c0773839_w2020_mad3125_fp.Model.Provider.CellPhoneProvider;
 import com.example.c0773839_w2020_mad3125_fp.Model.Provider.HydroProvider;
 import com.example.c0773839_w2020_mad3125_fp.Model.Provider.InternetProvider;
 
 import java.security.SecureRandom;
+import java.time.LocalDate;
 import java.util.Random;
 
 import java.lang.reflect.Array;
@@ -63,6 +70,7 @@ public class ObjectManager {
     }
 
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void loadObjects(){
         this.hydroBillHashMap.clear();
         this.internetBillHashMap.clear();
@@ -90,6 +98,35 @@ public class ObjectManager {
         this.hydroProviderHashMap.put(bellHydro.getName(),bellHydro);
 
 
+        MobileBill mobileBill1 = new MobileBill("fido_1", LocalDate.of(2019,7,11),fidoPhoneProvider,
+                5,45);
+        this.mobileBillHashMap.put(mobileBill1.getId(), mobileBill1);
+
+        HydroBill hydroBill1 = new HydroBill("justenergy_1",LocalDate.of(2019,4,1),justEnergyHydroProvider,
+                45);
+        this.hydroBillHashMap.put(hydroBill1.getId(),hydroBill1);
+
+        Contact contact1 = null;
+        try{
+            contact1 = new Contact("(647)2339102","johncena@invisible.com");
+        }
+        catch (Exception e){
+            System.out.println("Cannot create contact");
+            System.out.println(e);
+        }
+
+        Customer customer1 = new Customer(ObjectManager.getInstance().getRandomId(),
+                "John",
+                "Cena",
+                Gender.MALE,LocalDate.of(1993,4,6),
+                "johncena",
+                "letmein",
+                contact1
+                );
+        customer1.addBill(mobileBill1);
+        customer1.addBill(hydroBill1);
+
+        this.customerHashMap.put(customer1.getId(),customer1);
 
     }
 

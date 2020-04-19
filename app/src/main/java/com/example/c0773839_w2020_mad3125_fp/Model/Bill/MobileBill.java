@@ -4,16 +4,13 @@ import com.example.c0773839_w2020_mad3125_fp.Model.Provider.CellPhoneProvider;
 
 import java.time.LocalDate;
 
-public class MobileBill {
+public class MobileBill extends Bill {
 
     CellPhoneProvider cellPhoneProvider;
     double usedGB;
     double usedMinutes;
 
-    String id;
-    LocalDate date;
     BillType billType = BillType.Internet;
-    Double total;
 
     public MobileBill(String id, LocalDate date,CellPhoneProvider cellPhoneProvider, double usedGB,double usedMinutes) {
         this.cellPhoneProvider = cellPhoneProvider;

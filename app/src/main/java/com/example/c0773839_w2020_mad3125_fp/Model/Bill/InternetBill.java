@@ -4,14 +4,11 @@ import com.example.c0773839_w2020_mad3125_fp.Model.Provider.InternetProvider;
 
 import java.time.LocalDate;
 
-public class InternetBill {
+public class InternetBill extends Bill {
 
     InternetProvider internetProvider;
     double usedGB;
-    String id;
-    LocalDate date;
     BillType billType = BillType.Internet;
-    Double total;
 
     public InternetBill(String id, LocalDate date,InternetProvider internetProvider, double usedGB) {
         this.internetProvider = internetProvider;

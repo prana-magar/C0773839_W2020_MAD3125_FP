@@ -16,8 +16,8 @@ public class Customer extends Person {
 
     private HashMap<String, Bill> billDict;
 
-    public Customer(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName, String password, String salt, Contact contact) {
-        super(id, firstName, lastName, gender, birthDate, userName, password,salt,contact);
+    public Customer(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName, String password, Contact contact) {
+        super(id, firstName, lastName, gender, birthDate, userName, password,contact);
             this.id = id;
             this.firstName = firstName;
             this.lastName = lastName;

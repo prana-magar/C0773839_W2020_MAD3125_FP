@@ -8,10 +8,7 @@ public class HydroBill extends Bill {
 
     HydroProvider hydroProvider;
     double unitConsumed;
-    String id;
-    LocalDate date;
     BillType billType = BillType.Hydro;
-    Double total;
 
     public HydroBill(String id, LocalDate date,HydroProvider hydroProvider, double unitConsumed) {
         this.hydroProvider = hydroProvider;
