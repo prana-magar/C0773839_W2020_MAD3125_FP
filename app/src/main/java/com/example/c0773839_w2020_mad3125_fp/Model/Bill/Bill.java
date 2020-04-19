@@ -10,14 +10,27 @@ enum BillType{
 
 }
 
- abstract class Bill {
+ public abstract class Bill {
 
-    String id;
-    LocalDate date;
-    BillType billType;
-    Double total;
-
-
+     String id;
+     LocalDate date;
+     BillType billType;
+     Double total;
 
 
-}
+     public String getId() {
+         return id;
+     }
+
+     public LocalDate getDate() {
+         return date;
+     }
+
+     public BillType getBillType() {
+         return billType;
+     }
+
+     public Double getTotal() {
+         return total;
+     }
+ }

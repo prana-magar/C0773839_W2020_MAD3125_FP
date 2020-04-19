@@ -1,8 +1,12 @@
 package com.example.c0773839_w2020_mad3125_fp.Model;
 
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.Bill;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 
 
 /**customer class inherits person class and holds the details of customer as well as the vehicles they have rented
@@ -10,62 +14,36 @@ import java.util.List;
  */
 public class Customer extends Person {
 
-    private ArrayList<VehicleRent> vehicleRents;
+    private HashMap<String, Bill> billDict;
 
     public Customer(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName, String password, String salt, Contact contact) {
-        super(id, firstName, lastName, gender, birthDate, userName, password, salt,contact);
-    }
-
-    public Customer(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName, String password, String salt, Address address, ArrayList<VehicleRent> vehicleRents,Contact contact) {
         super(id, firstName, lastName, gender, birthDate, userName, password,salt,contact);
-        this.vehicleRents = vehicleRents;
+            this.id = id;
+            this.firstName = firstName;
+            this.lastName = lastName;
+            this.gender = gender;
+            this.birthDate = birthDate;
+            this.userName = userName;
+            this.contact = contact;
+            this.salt = PasswordUtil.getSalt(7);
+            this.password = PasswordUtil.generateSecurePassword(password,this.salt);
     }
 
-    @Override
-    public String toString() {
-        return "Customer{" +
-                super.toString()+
-                " vehicleRents=" + vehicleRents +
-                '}';
+
+    public void addBill(Bill bill){
+        this.billDict.put(bill.getId(), bill);
     }
 
-    public void addVehicleRents(VehicleRent vehicleRent){
+    public ArrayList<Bill> getBills(){
+        return new ArrayList<Bill>(this.billDict.values());
+    }
 
-        if(this.vehicleRents == null){
-            this.vehicleRents = new ArrayList<>();
+    public double getTotal(){
+        double total = 0;
+        for(Bill bill: this.billDict.values()){
+            total += bill.getTotal();
         }
-
-        this.vehicleRents.add(vehicleRent);
+        return total;
     }
-
-    public void addVehicleRents(List<VehicleRent> vehicleRents){
-        for(VehicleRent vehicleRent: vehicleRents){
-            this.addVehicleRents(vehicleRent);
-        }
-    }
-
-    public boolean hasBookings(){
-        return this.vehicleRents != null;
-    }
-
-    public boolean hasLiveBookings(){
-
-        for(VehicleRent vehicleRent: this.vehicleRents){
-            if(vehicleRent.isLive()){
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    public List<VehicleRent> getVehicleRents() {
-        return vehicleRents;
-    }
-
-    public void setVehicleRents(List<VehicleRent> vehicleRents) {
-        this.vehicleRents = (ArrayList<VehicleRent>)vehicleRents;
-    }
-
 
 }

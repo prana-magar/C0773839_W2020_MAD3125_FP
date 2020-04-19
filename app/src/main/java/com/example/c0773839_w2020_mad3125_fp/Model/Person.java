@@ -12,16 +12,16 @@ import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
  * Person class is an abstract class containing attributes to be inherited by Customer, Driver and Owner Classes
  */
 public abstract class Person {
-    private String id;
-    private String firstName;
-    private String lastName;
-    private Gender gender;
-    private LocalDate birthDate;
-    private int age;
-    private String userName;
-    private String password;
-    private String salt;
-    private Contact contact;
+     String id;
+     String firstName;
+     String lastName;
+     Gender gender;
+     LocalDate birthDate;
+     int age;
+     String userName;
+     String password;
+     String salt;
+     Contact contact;
 
     Person(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName,
            String password,String salt, Contact contact) {
