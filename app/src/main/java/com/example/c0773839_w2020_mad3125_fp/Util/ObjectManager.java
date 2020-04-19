@@ -16,6 +16,7 @@ import com.example.c0773839_w2020_mad3125_fp.Model.Provider.InternetProvider;
 
 import java.security.SecureRandom;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Random;
 
 import java.lang.reflect.Array;
@@ -56,8 +57,8 @@ public class ObjectManager {
         this.customerHashMap.put(customer.getId(),customer);
     }
 
-    public Customer[] getCustomers(){
-        return (Customer[]) this.customerHashMap.values().toArray();
+    public ArrayList<Customer> getCustomers(){
+        return  new ArrayList<Customer>(this.customerHashMap.values());
     }
 
 

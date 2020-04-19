@@ -14,7 +14,7 @@ import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
  */
 public class Customer extends Person {
 
-    private HashMap<String, Bill> billDict;
+    private HashMap<String, Bill> billDict = new HashMap<>();
 
     public Customer(String id, String firstName, String lastName, Gender gender, LocalDate birthDate, String userName, String password, Contact contact) {
         super(id, firstName, lastName, gender, birthDate, userName, password,contact);
