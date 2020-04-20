@@ -2,6 +2,7 @@ package com.example.c0773839_w2020_mad3125_fp.Model;
 
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.Bill;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,7 +13,7 @@ import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 /**customer class inherits person class and holds the details of customer as well as the vehicles they have rented
  *
  */
-public class Customer extends Person {
+public class Customer extends Person implements Serializable {
 
     private HashMap<String, Bill> billDict = new HashMap<>();
 

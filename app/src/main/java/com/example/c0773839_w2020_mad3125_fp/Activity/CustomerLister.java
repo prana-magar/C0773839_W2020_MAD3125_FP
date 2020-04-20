@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
@@ -20,7 +21,7 @@ import com.example.c0773839_w2020_mad3125_fp.Model.Bill.InternetBill;
 import com.example.c0773839_w2020_mad3125_fp.R;
 import com.example.c0773839_w2020_mad3125_fp.Util.ObjectManager;
 
-public class CustomerLister extends AppCompatActivity {
+public class CustomerLister extends AppCompatActivity implements CustomerListAdapter.OnCardClickListner {
 
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
@@ -44,7 +45,7 @@ public class CustomerLister extends AppCompatActivity {
         layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
 
-        mAdapter = new CustomerListAdapter(ObjectManager.getInstance().getCustomers());
+        mAdapter = new CustomerListAdapter(ObjectManager.getInstance().getCustomers(),this);
         recyclerView.setAdapter(mAdapter);
 
 
@@ -72,5 +73,12 @@ public class CustomerLister extends AppCompatActivity {
 
         }
         return true;
+    }
+
+    @Override
+    public void onClickView(int position) {
+        Intent intent = new Intent(this,CustomerDetail.class);
+        intent.putExtra("obj",ObjectManager.getInstance().getCustomers()[position]);
+        startActivity(intent);
     }
 }

@@ -1,11 +1,12 @@
 package com.example.c0773839_w2020_mad3125_fp.Model;
 
+import java.io.Serializable;
 import java.util.regex.Pattern;
 
 /**
  * Stores all contact information about a person.
  */
-public class Contact {
+public class Contact implements Serializable {
 
     private String mobileNumber;
     private String emailId;

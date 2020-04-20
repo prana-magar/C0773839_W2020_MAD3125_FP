@@ -1,6 +1,8 @@
 package com.example.c0773839_w2020_mad3125_fp.Model.Provider;
 
-public class CellPhoneProvider {
+import java.io.Serializable;
+
+public class CellPhoneProvider implements Serializable {
     String name;
     double baseRate;
     double gbUsedRate;

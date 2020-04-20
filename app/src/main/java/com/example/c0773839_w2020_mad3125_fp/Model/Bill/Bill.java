@@ -1,5 +1,6 @@
 package com.example.c0773839_w2020_mad3125_fp.Model.Bill;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
 
@@ -10,7 +11,7 @@ enum BillType{
 
 }
 
- public abstract class Bill {
+ public abstract class Bill  implements Serializable {
 
      String id;
      LocalDate date;
