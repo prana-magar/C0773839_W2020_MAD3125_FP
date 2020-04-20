@@ -226,6 +226,75 @@ public class ObjectManager {
         customer2.addBill(internetBill2);
         this.customerHashMap.put(customer2.getId(),customer2);
 
+
+
+        // Customer3
+        MobileBill mobileBill3= new MobileBill("publicMobile_3", LocalDate.of(2015,7,11),fidoPhoneProvider,
+                34,5);
+        this.mobileBillHashMap.put(mobileBill3.getId(), mobileBill3);
+
+        InternetBill internetBill3 = new InternetBill("bell_3",
+                LocalDate.of(2020,1,20),
+                bellInternetProvider,
+                27.8);
+        this.internetBillHashMap.put(internetBill3.getId(),internetBill3);
+
+        InternetBill internetBill4 = new InternetBill("bell_4",
+                LocalDate.of(2019,3,20),
+                bellInternetProvider,
+                7.8);
+        this.internetBillHashMap.put(internetBill4.getId(),internetBill4);
+
+        HydroBill hydroBill4 = new HydroBill("bell_energy4",
+                LocalDate.of(2019,3,20),
+                bellHydro,
+                55.90);
+        this.hydroBillHashMap.put(hydroBill4.getId(),hydroBill4);
+
+        Contact contact3 = null;
+        try{
+            contact3 = new Contact("(647)23224434","prakash@gmail.com");
+        }
+        catch (Exception e){
+            System.out.println("Cannot create contact");
+            System.out.println(e);
+        }
+
+        Customer customer3 = new Customer(ObjectManager.getInstance().getRandomId(),
+                "Prakash",
+                "Rana",
+                Gender.MALE,LocalDate.of(1995,4,6),
+                "prakashrana",
+                "letmein2",
+                contact3
+        );
+        customer3.addBill(mobileBill3);
+        customer3.addBill(internetBill3);
+        customer3.addBill(internetBill4);
+        customer3.addBill(hydroBill4);
+        this.customerHashMap.put(customer3.getId(),customer3);
+
+
+        Contact contact4 = null;
+        try{
+            contact4 = new Contact("(647)33224434","shyam@gmail.com");
+        }
+        catch (Exception e){
+            System.out.println("Cannot create contact");
+            System.out.println(e);
+        }
+
+        Customer customer4 = new Customer(ObjectManager.getInstance().getRandomId(),
+                "Shyam",
+                "tam",
+                Gender.MALE,LocalDate.of(1989,4,6),
+                "prakashrana",
+                "letmein2",
+                contact4
+        );
+
+        this.customerHashMap.put(customer4.getId(),customer4);
+
     }
 
 
