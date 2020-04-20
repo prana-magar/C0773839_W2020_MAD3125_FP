@@ -31,9 +31,11 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(emailEditText.getText().toString().equals("")){
                     emailEditText.setError("Email cant be empty");
+                    return;
                 }
                 if(passwordEditText.getText().toString().equals("")){
                     passwordEditText.setError("Email cant be empty");
+                    return;
                 }
             }
         });
