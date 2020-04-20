@@ -2,19 +2,24 @@ package com.example.c0773839_w2020_mad3125_fp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.Toast;
 
 import com.example.c0773839_w2020_mad3125_fp.R;
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-public class AddBill extends AppCompatActivity {
+import java.util.Calendar;
+
+public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
     String[] billType = new String[] {"Hydro","Internet","Mobile"};
     String[] InternetProvider = new String[] {"Bell","Rogers"};
     String[] MobileProvider = new String[] {"FIDO","Freedom","Public Mobile"};
@@ -23,7 +28,7 @@ public class AddBill extends AppCompatActivity {
 
 
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
-    TextInputEditText UnitUsedEditText,MinutesUsedEditText;
+    TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText;
     TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput;
     Button CreateButton;
     @Override
@@ -47,7 +52,25 @@ public class AddBill extends AppCompatActivity {
 
         UnitUsedEditText = findViewById(R.id.UnitUsedEditText);
         MinutesUsedEditText = findViewById(R.id.MinutesUsedEditText);
+
+        BillDateEditText = findViewById(R.id.BillDateEditText);
         CreateButton = findViewById(R.id.CreateButton);
+
+        final MaterialDatePicker datePicker = new MaterialDatePicker();
+
+        BillDateEditText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DatePickerDialog datePickerDialog = new DatePickerDialog(
+                        AddBill.this,
+                        AddBill.this,
+                        Calendar.getInstance().get(Calendar.YEAR),
+                        Calendar.getInstance().get(Calendar.MONTH),
+                        Calendar.getInstance().get(Calendar.DAY_OF_MONTH)
+                );
+                datePickerDialog.show();
+            }
+        });
 
         // default hidden
         ProviderTextInput.setAlpha(0);
@@ -100,5 +123,19 @@ public class AddBill extends AppCompatActivity {
         ProviderAutoComplete = findViewById(R.id.ProviderAutoComplete);
         ProviderAutoComplete.setAdapter(providerAdapter);
 
+    }
+
+    @Override
+    public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
+        String monthStr = String.valueOf(month);
+        if(month < 10){
+            monthStr = "0"+monthStr;
+        }
+        String dayStr = String.valueOf(dayOfMonth);
+        if(month < 10){
+            dayStr = "0"+dayStr;
+        }
+        String dateStr = year+"/"+monthStr+"/"+dayStr;
+        BillDateEditText.setText(dateStr);
     }
 }
