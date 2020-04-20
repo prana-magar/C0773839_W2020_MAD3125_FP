@@ -75,7 +75,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
         final Intent intent = getIntent();
         Customer customer = (Customer) intent.getSerializableExtra("customer");
-        this.customer = customer;
+        this.customer = ObjectManager.getInstance().getCustomer(customer.getId());
         System.out.println("customer= "+customer);
         final MaterialDatePicker datePicker = new MaterialDatePicker();
 

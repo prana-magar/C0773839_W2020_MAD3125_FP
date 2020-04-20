@@ -126,6 +126,15 @@ public class ObjectManager {
 
     }
 
+    public Customer getCustomer(String id){
+        for(Customer customer: this.customerHashMap.values()){
+            if(customer.getId().equals(id)){
+                return customer;
+            }
+        }
+        return null;
+    }
+
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void loadObjects(){
         this.hydroBillHashMap.clear();
