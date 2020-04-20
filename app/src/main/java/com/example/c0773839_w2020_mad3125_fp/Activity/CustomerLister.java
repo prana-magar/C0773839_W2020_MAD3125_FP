@@ -69,7 +69,8 @@ public class CustomerLister extends AppCompatActivity implements CustomerListAda
                 break;
 
             case R.id.add_customer:
-                System.out.println("Add new clicked");
+                Intent intent2 = new Intent(CustomerLister.this,AddCustomer.class);
+                startActivity(intent2);
 
         }
         return true;
