@@ -31,9 +31,9 @@ public class ObjectManager {
     private static final Random RANDOM = new SecureRandom();
 
     private HashMap<String,Customer> customerHashMap  =  new HashMap<>();
-    HashMap<String, MobileBill> mobileBillHashMap  =  new HashMap<>();
-    HashMap<String, InternetBill> internetBillHashMap  =  new HashMap<>();
-    HashMap<String,HydroBill> hydroBillHashMap  =  new HashMap<>();
+    public HashMap<String, MobileBill> mobileBillHashMap  =  new HashMap<>();
+    public HashMap<String, InternetBill> internetBillHashMap  =  new HashMap<>();
+    public HashMap<String,HydroBill> hydroBillHashMap  =  new HashMap<>();
 
     HashMap<String, CellPhoneProvider> cellPhoneProviderHashMap  =  new HashMap<>();
     HashMap<String, InternetProvider> internetProviderHashMap =  new HashMap<>();
@@ -95,6 +95,36 @@ public class ObjectManager {
         return new String(returnValue);
     }
 
+
+    public CellPhoneProvider getCellProvider(String name){
+        if(this.cellPhoneProviderHashMap.containsKey(name)){
+            return this.cellPhoneProviderHashMap.get(name);
+        }
+        else{
+            return this.cellPhoneProviderHashMap.get("FIDO");
+        }
+
+    }
+
+    public InternetProvider getInternetProvider(String name){
+        if(this.internetProviderHashMap.containsKey(name)){
+            return this.internetProviderHashMap.get(name);
+        }
+        else{
+            return this.internetProviderHashMap.get("Bell");
+        }
+
+    }
+
+    public HydroProvider getHydroProvider(String name){
+        if(this.hydroProviderHashMap.containsKey(name)){
+            return this.hydroProviderHashMap.get(name);
+        }
+        else{
+            return this.hydroProviderHashMap.get("Bell Energy");
+        }
+
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     public void loadObjects(){

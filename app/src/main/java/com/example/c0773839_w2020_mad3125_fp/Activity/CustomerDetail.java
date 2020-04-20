@@ -33,7 +33,7 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
     private RecyclerView recyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager layoutManager;
-
+    Customer customer;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,7 +50,7 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
 
         Intent intent = getIntent();
         Customer customer = (Customer)intent.getSerializableExtra("obj");
-
+        this.customer = customer;
         Locale locale = new Locale("en", "US");
         NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 
@@ -92,6 +92,7 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
 
             case R.id.add_bill:
                 Intent intent2 = new Intent(CustomerDetail.this,AddBill.class);
+                intent2.putExtra("customer",customer);
                 startActivity(intent2);
 
         }

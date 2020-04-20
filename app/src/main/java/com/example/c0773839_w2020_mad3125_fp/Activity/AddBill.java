@@ -1,8 +1,11 @@
 package com.example.c0773839_w2020_mad3125_fp.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,11 +15,23 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Toast;
 
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.BillType;
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.HydroBill;
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.InternetBill;
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.MobileBill;
+import com.example.c0773839_w2020_mad3125_fp.Model.Customer;
+import com.example.c0773839_w2020_mad3125_fp.Model.Provider.HydroProvider;
+import com.example.c0773839_w2020_mad3125_fp.Model.Provider.InternetProvider;
+import com.example.c0773839_w2020_mad3125_fp.Model.Provider.CellPhoneProvider;
+
 import com.example.c0773839_w2020_mad3125_fp.R;
+import com.example.c0773839_w2020_mad3125_fp.Util.ObjectManager;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
@@ -25,16 +40,18 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
     String[] MobileProvider = new String[] {"FIDO","Freedom","Public Mobile"};
     String[] HydroProvider = new String[] {"Just Energy","Bell Energy"};
     String[] currentProvider = InternetProvider;
-
+    Customer customer;
 
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
-    TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText,ProviderEditText;
+    TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText;
     TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput;
     Button CreateButton;
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bill);
+        ObjectManager.getInstance().loadObjects();
 
         ArrayAdapter<String> billTypeAdapter =
                 new ArrayAdapter<String>(
@@ -56,6 +73,10 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
         BillDateEditText = findViewById(R.id.BillDateEditText);
         CreateButton = findViewById(R.id.CreateButton);
 
+        final Intent intent = getIntent();
+        Customer customer = (Customer) intent.getSerializableExtra("customer");
+        this.customer = customer;
+        System.out.println("customer= "+customer);
         final MaterialDatePicker datePicker = new MaterialDatePicker();
 
         BillDateEditText.setOnClickListener(new View.OnClickListener() {
@@ -80,7 +101,76 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
 
 
+        CreateButton.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onClick(View view) {
 
+
+                String dateStr = BillDateEditText.getText().toString();
+                if(dateStr.equals("")){
+                    BillDateTextInput.setError("Date cant be empty");
+                    return;
+                }
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                LocalDate billDateLocalDate = LocalDate.parse(dateStr,formatter);
+
+                String unitConsumedStr = UnitUsedEditText.getText().toString();
+                if(unitConsumedStr.equals("")){
+                    UnitUsedTextInput.setError("Unit cant be empty");
+                    return;
+                }
+                double unitConsumed = Double.parseDouble(unitConsumedStr);
+
+                String providerStr = ProviderAutoComplete.getText().toString();
+                if(providerStr.equals("")){
+                    ProviderTextInput.setError("Cant be empty");
+                    return;
+                }
+                System.out.println("provider= "+providerStr);
+
+                BillType billType;
+                switch (BillTypeAutoComplete.getText().toString()){
+                    case "Hydro":
+                        HydroProvider hydroProvider = ObjectManager.getInstance().getHydroProvider(providerStr);
+                        HydroBill hydroBill = new HydroBill(ObjectManager.getInstance().getRandomId(),
+                                billDateLocalDate,hydroProvider,unitConsumed
+                                );
+                        AddBill.this.customer.addBill(hydroBill);
+                        ObjectManager.getInstance().hydroBillHashMap.put(hydroBill.getId(),hydroBill);
+                        break;
+
+
+                    case "Internet":
+                        InternetProvider internetProvider = ObjectManager.getInstance().getInternetProvider(providerStr);
+                        InternetBill internetBill = new InternetBill(ObjectManager.getInstance().getRandomId(),
+                                billDateLocalDate,internetProvider,unitConsumed);
+                        AddBill.this.customer.addBill(internetBill);
+                        ObjectManager.getInstance().internetBillHashMap.put(internetBill.getId(),internetBill);
+                        break;
+
+
+                    default:
+                        String usedMinutesStr = MinutesUsedEditText.getText().toString();
+                        if(usedMinutesStr.equals("")){
+                            MinutesUsedTextInput.setError("Minutes cant be empty");
+                            return;
+                        }
+                        double usedMinutes = Double.parseDouble(usedMinutesStr);
+                        CellPhoneProvider cellPhoneProvider = ObjectManager.getInstance().getCellProvider(providerStr);
+                        MobileBill mobileBill = new MobileBill(ObjectManager.getInstance().getRandomId(),
+                                billDateLocalDate,cellPhoneProvider,unitConsumed,usedMinutes);
+                        AddBill.this.customer.addBill(mobileBill);
+                        ObjectManager.getInstance().mobileBillHashMap.put(mobileBill.getId(),mobileBill);
+                        break;
+                }
+
+                Intent intent1 = new Intent(AddBill.this, CustomerDetail.class);
+                intent1.putExtra("obj",AddBill.this.customer);
+                startActivity(intent1);
+
+            }
+        });
 
 
         BillTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -128,12 +218,12 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        String monthStr = String.valueOf(month);
-        if(month < 10){
+        String monthStr = String.valueOf(month+1);
+        if(month+1 < 10){
             monthStr = "0"+monthStr;
         }
         String dayStr = String.valueOf(dayOfMonth);
-        if(month < 10){
+        if(dayOfMonth < 10){
             dayStr = "0"+dayStr;
         }
         String dateStr = year+"/"+monthStr+"/"+dayStr;

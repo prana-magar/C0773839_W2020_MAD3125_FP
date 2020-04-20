@@ -185,12 +185,12 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        String monthStr = String.valueOf(month);
-        if(month < 10){
+        String monthStr = String.valueOf(month+1);
+        if(month+1 < 10){
             monthStr = "0"+monthStr;
         }
         String dayStr = String.valueOf(dayOfMonth);
-        if(month < 10){
+        if(dayOfMonth < 10){
             dayStr = "0"+dayStr;
         }
         String dateStr = year+"/"+monthStr+"/"+dayStr;
