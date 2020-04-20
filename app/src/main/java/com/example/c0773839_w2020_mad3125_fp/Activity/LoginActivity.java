@@ -43,6 +43,7 @@ public class LoginActivity extends AppCompatActivity {
         SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
         String email = pref.getString("email", "");
         String password = pref.getString("password", "");
+        System.out.println("email = " + email +"  "+password);
         emailEditText.setText(email);
         passwordEditText.setText(password);
 
@@ -70,7 +71,8 @@ public class LoginActivity extends AppCompatActivity {
                                 customer.getPassword(),
                                 customer.getSalt())){
 
-                            if(rememberMeSwitch.isActivated()){
+                            System.out.println("isChecked = " + rememberMeSwitch.isChecked() +" "+rememberMeSwitch.isActivated());
+                            if(rememberMeSwitch.isChecked()){
                                 getSharedPreferences(PREFS_NAME,MODE_PRIVATE)
                                         .edit()
                                         .putString("email", emailStr)
