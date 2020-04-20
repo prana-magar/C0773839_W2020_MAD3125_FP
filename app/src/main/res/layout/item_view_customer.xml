@@ -36,10 +36,10 @@
             <de.hdodenhof.circleimageview.CircleImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/splash"
+                android:contentDescription="TODO"
+                android:src="@drawable/placeholder_avatar"
                 app:civ_border_color="@color/cardview_dark_background"
-                app:civ_border_width="2dp"
-                android:contentDescription="TODO"/>
+                app:civ_border_width="2dp" />
             <!-- Title, secondary and supporting text -->
             <TextView
                 android:id="@+id/name_id"
@@ -72,9 +72,10 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
+                            android:layout_marginRight="5dp"
                             app:srcCompat="@drawable/mail">
 
 
@@ -89,7 +90,8 @@
                             android:text="secondary test"
 
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
@@ -104,8 +106,8 @@
                         android:orientation="horizontal">
 
                         <ImageView
-                            android:layout_width="40px"
-                            android:layout_height="40px"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
                             app:srcCompat="@drawable/money">
@@ -122,7 +124,8 @@
                             android:text="secondary test"
 
                             android:textAppearance="?attr/textAppearanceBody2"
-                            android:textColor="?android:attr/textColorSecondary" />
+                            android:textColor="?android:attr/textColorSecondary"
+                            android:textSize="18sp" />
 
                     </LinearLayout>
 
