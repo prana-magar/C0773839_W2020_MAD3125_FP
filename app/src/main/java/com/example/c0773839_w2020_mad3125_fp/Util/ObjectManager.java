@@ -57,8 +57,15 @@ public class ObjectManager {
         this.customerHashMap.put(customer.getId(),customer);
     }
 
-    public ArrayList<Customer> getCustomers(){
-        return  new ArrayList<Customer>(this.customerHashMap.values());
+    public Customer[] getCustomers(){
+        Customer[] customers = new Customer[this.customerHashMap.size()];
+        ArrayList<Customer> list = new ArrayList<Customer>(this.customerHashMap.values());
+        int i =0;
+        for(Customer customer: list){
+            customers[i] = customer;
+            i++;
+        }
+        return customers;
     }
 
 
