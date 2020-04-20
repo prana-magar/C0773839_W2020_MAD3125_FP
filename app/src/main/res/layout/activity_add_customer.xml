@@ -28,6 +28,7 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/LastNameTextInput"
         android:layout_width="match_parent"
@@ -35,13 +36,13 @@
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:hint="Enter Last Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/FirstNameTextInput">
+        app:layout_constraintTop_toBottomOf="@+id/FirstNameTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/LastNameEditText"
@@ -58,13 +59,13 @@
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:hint="Enter Gender"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/LastNameTextInput">
+        app:layout_constraintTop_toBottomOf="@+id/LastNameTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/GenderEditText"
@@ -95,6 +96,7 @@
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/PhoneTextInput"
         android:layout_width="match_parent"
@@ -102,13 +104,13 @@
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:hint="Enter Phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/personal_details_layout">
+        app:layout_constraintTop_toBottomOf="@+id/EmailTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PhoneEditText"
@@ -116,6 +118,7 @@
             android:layout_height="wrap_content" />
 
     </com.google.android.material.textfield.TextInputLayout>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/DobTextInput"
         android:layout_width="match_parent"
@@ -123,13 +126,13 @@
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:hint="Enter Date Of Birth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/PhoneTextInput">
+        app:layout_constraintTop_toBottomOf="@+id/PhoneTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/DobEditText"
@@ -146,13 +149,13 @@
 
         android:layout_marginStart="10dp"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginRight="10dp"
         android:hint="Enter Password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/DobTextInput">
+        app:layout_constraintTop_toBottomOf="@+id/DobTextInput">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/PasswordEditText"
@@ -162,12 +165,12 @@
     </com.google.android.material.textfield.TextInputLayout>
 
 
-
     <Button
         android:id="@+id/CreateButton"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:text="Create"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
