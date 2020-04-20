@@ -11,6 +11,7 @@ import com.example.c0773839_w2020_mad3125_fp.R;
 import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.example.c0773839_w2020_mad3125_fp.Util.Validation;
 
 public class AddCustomer extends AppCompatActivity {
 
@@ -65,6 +66,14 @@ public class AddCustomer extends AppCompatActivity {
                             EmailTextInput.setError("Email cant be Empty");
                             return;
                         }
+
+                        if(!Validation.Email(emailStr)){
+                            EmailTextInput.setError("Email not Valid");
+                            return;
+                        }
+
+
+
 
                         String phoneStr = PhoneEditText.getText().toString();
                         if(phoneStr.equals("")){
