@@ -46,4 +46,8 @@ public class Customer extends Person {
         return total;
     }
 
+    public String getFullName()
+    {
+        return firstName +" "+ lastName;
+    }
 }

@@ -26,16 +26,33 @@
             android:clipToPadding="false"
             android:orientation="vertical">
 
-            <!-- Media -->
-            <ImageView
-                android:id="@+id/attraction_image_id"
-                android:layout_width="match_parent"
-                android:layout_height="194dp"
-                android:contentDescription="test"
-                android:scaleType="centerCrop"
-                app:srcCompat="@drawable/splash"
 
-                />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:orientation="horizontal">
+            <!-- Media -->
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/splash"
+                app:civ_border_color="@color/cardview_dark_background"
+                app:civ_border_width="2dp"
+                android:contentDescription="TODO"/>
+            <!-- Title, secondary and supporting text -->
+            <TextView
+                android:id="@+id/name_id"
+                android:layout_width="wrap_content"
+                android:layout_height="80dp"
+                android:text="Title"
+                android:gravity="center"
+                android:layout_marginLeft="20dp"
+                android:textAppearance="?attr/textAppearanceHeadline6" />
+
+        </LinearLayout>
+
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -43,13 +60,6 @@
                 android:orientation="vertical"
                 android:padding="16dp">
 
-                <!-- Title, secondary and supporting text -->
-                <TextView
-                    android:id="@+id/attraction_name_id"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Title"
-                    android:textAppearance="?attr/textAppearanceHeadline6" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
