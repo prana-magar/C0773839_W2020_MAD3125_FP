@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.c0773839_w2020_mad3125_fp.Model.Customer;
 import com.example.c0773839_w2020_mad3125_fp.R;
 
+import java.text.NumberFormat;
+import java.util.Locale;
+
 public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapter.MyViewHolder> {
     private Customer[] customers;
     private OnCardClickListner onCardClickListner;
@@ -60,7 +63,12 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
         Customer customer = customers[position];
         holder.textViewEmail.setText(customer.getContact().getEmailId());
         holder.textViewName.setText(customer.getFullName());
-        holder.textViewBill.setText(String.valueOf(customer.getTotal()));
+
+        Locale locale = new Locale("en", "US");
+        NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+
+
+        holder.textViewBill.setText(currencyFormatter.format(customer.getTotal()));
 
     }
 
