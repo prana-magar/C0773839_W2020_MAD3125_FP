@@ -1,8 +1,11 @@
 package com.example.c0773839_w2020_mad3125_fp.Activity;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -11,13 +14,19 @@ import android.widget.Button;
 import android.widget.DatePicker;
 
 import com.example.c0773839_w2020_mad3125_fp.Adapter.BillListAdapter;
+import com.example.c0773839_w2020_mad3125_fp.Model.Contact;
+import com.example.c0773839_w2020_mad3125_fp.Model.Customer;
+import com.example.c0773839_w2020_mad3125_fp.Model.Gender;
 import com.example.c0773839_w2020_mad3125_fp.R;
+import com.example.c0773839_w2020_mad3125_fp.Util.ObjectManager;
 import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 import com.google.android.material.datepicker.MaterialDatePicker;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.example.c0773839_w2020_mad3125_fp.Util.Validation;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 
 public class AddCustomer extends AppCompatActivity implements DatePickerDialog.OnDateSetListener{
@@ -76,6 +85,7 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
 
         CreateButton.setOnClickListener(
                 new View.OnClickListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.O)
                     @Override
                     public void onClick(View view) {
                         reset();
@@ -85,6 +95,8 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
                             FirstNameTextInput.setError("First Name cant be Empty");
                             return;
                         }
+
+                        String lastNameStr = LastNameEditText.getText().toString();
 
                         String genderStr = GenderEditText.getText().toString();
                         if(genderStr.equals("")){
@@ -124,13 +136,35 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
                             return;
                         }
 
+                         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+                        LocalDate dobLocalDate = LocalDate.parse(dobStr,formatter);
+
                         String passwordStr = PasswordEditText.getText().toString();
                         if(passwordStr.equals("")){
                             PasswordTextInput.setError("Password cant be Empty");
                             return;
                         }
 
+                        Gender gender = Gender.MALE;
+                        switch (genderStr.toLowerCase()){
+                            case "male":
+                                gender = Gender.MALE;
+                                break;
+                            case "female":
+                                gender = Gender.FEMALE;
+                                break;
+                            default:
+                                gender = Gender.OTHER;
 
+                        }
+
+                        Contact contact = new Contact(phoneStr,emailStr);
+                        Customer customer = new Customer(ObjectManager.getInstance().getRandomId(),
+                                firstNameStr,lastNameStr,gender,dobLocalDate,emailStr,passwordStr,
+                                contact);
+                        ObjectManager.getInstance().addCustomer(customer);
+                        Intent intent = new Intent(AddCustomer.this,CustomerLister.class);
+                        startActivity(intent);
                     }
                 }
         );
@@ -151,7 +185,15 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
 
     @Override
     public void onDateSet(DatePicker datePicker, int year, int month, int dayOfMonth) {
-        String dateStr = year+"/"+month+"/"+dayOfMonth;
+        String monthStr = String.valueOf(month);
+        if(month < 10){
+            monthStr = "0"+monthStr;
+        }
+        String dayStr = String.valueOf(dayOfMonth);
+        if(month < 10){
+            dayStr = "0"+dayStr;
+        }
+        String dateStr = year+"/"+monthStr+"/"+dayStr;
         DobEditText.setText(dateStr);
     }
 }
