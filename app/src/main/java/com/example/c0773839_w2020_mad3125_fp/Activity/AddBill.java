@@ -28,7 +28,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
 
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
-    TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText;
+    TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText,ProviderEditText;
     TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput;
     Button CreateButton;
     @Override
@@ -52,7 +52,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
         UnitUsedEditText = findViewById(R.id.UnitUsedEditText);
         MinutesUsedEditText = findViewById(R.id.MinutesUsedEditText);
-
+        ProviderAutoComplete = findViewById(R.id.ProviderAutoComplete);
         BillDateEditText = findViewById(R.id.BillDateEditText);
         CreateButton = findViewById(R.id.CreateButton);
 
@@ -87,6 +87,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 ProviderTextInput.setAlpha(1);
+                ProviderAutoComplete.setText("");
                 UnitUsedTextInput.setAlpha(1);
                 BillDateTextInput.setAlpha(1);
                 MinutesUsedTextInput.setAlpha(0);
