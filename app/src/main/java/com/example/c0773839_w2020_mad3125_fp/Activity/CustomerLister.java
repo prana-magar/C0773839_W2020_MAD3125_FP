@@ -40,6 +40,8 @@ public class CustomerLister extends AppCompatActivity implements CustomerListAda
         Toolbar myToolbar =  findViewById(R.id.my_toolbar);
         myToolbar.setTitle("Customers");
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
 
         layoutManager = new LinearLayoutManager(this);

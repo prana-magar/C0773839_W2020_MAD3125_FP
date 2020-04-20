@@ -47,6 +47,8 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
         Toolbar myToolbar =  findViewById(R.id.my_toolbar);
         myToolbar.setTitle("Detail");
         setSupportActionBar(myToolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         Intent intent = getIntent();
         Customer customer = (Customer)intent.getSerializableExtra("obj");
@@ -94,6 +96,13 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
                 Intent intent2 = new Intent(CustomerDetail.this,AddBill.class);
                 intent2.putExtra("customer",customer);
                 startActivity(intent2);
+                break;
+
+            case android.R.id.home:
+                Intent intent1 = new Intent(CustomerDetail.this,CustomerLister.class);
+                startActivity(intent1);
+                break;
+
 
         }
         return true;
