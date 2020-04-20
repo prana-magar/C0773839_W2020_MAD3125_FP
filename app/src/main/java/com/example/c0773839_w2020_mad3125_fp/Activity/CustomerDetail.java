@@ -1,12 +1,16 @@
 package com.example.c0773839_w2020_mad3125_fp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.example.c0773839_w2020_mad3125_fp.Adapter.BillListAdapter;
@@ -39,6 +43,11 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
         tvPhone = findViewById(R.id.textViewPhone);
         tvDob = findViewById(R.id.textViewDob);
         tvTotal = findViewById(R.id.textViewTotal);
+
+        Toolbar myToolbar =  findViewById(R.id.my_toolbar);
+        myToolbar.setTitle("Detail");
+        setSupportActionBar(myToolbar);
+
         Intent intent = getIntent();
         Customer customer = (Customer)intent.getSerializableExtra("obj");
 
@@ -67,5 +76,25 @@ public class CustomerDetail extends AppCompatActivity implements BillListAdapter
     @Override
     public void onClickView(int position) {
         System.out.println("bill clicked");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.customer_detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId())
+        {
+
+            case R.id.add_bill:
+                Intent intent2 = new Intent(CustomerDetail.this,AddBill.class);
+                startActivity(intent2);
+
+        }
+        return true;
     }
 }
