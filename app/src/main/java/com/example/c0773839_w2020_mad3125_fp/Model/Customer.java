@@ -13,7 +13,7 @@ import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 /**customer class inherits person class and holds the details of customer as well as the vehicles they have rented
  *
  */
-public class Customer extends Person implements Serializable {
+public class Customer extends Person {
 
     private HashMap<String, Bill> billDict = new HashMap<>();
 

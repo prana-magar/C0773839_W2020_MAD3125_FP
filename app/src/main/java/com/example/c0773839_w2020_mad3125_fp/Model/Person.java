@@ -5,13 +5,14 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
 
 /**
  * Person class is an abstract class containing attributes to be inherited by Customer, Driver and Owner Classes
  */
-public abstract class Person {
+public abstract class Person implements Serializable {
      String id;
      String firstName;
      String lastName;
