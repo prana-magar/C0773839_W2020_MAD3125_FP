@@ -46,6 +46,8 @@ public class AddCustomer extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        reset();
+
                         String firstNameStr = FirstNameEditText.getText().toString();
                         if(firstNameStr.equals("")){
                             FirstNameTextInput.setError("First Name cant be Empty");
@@ -87,5 +89,18 @@ public class AddCustomer extends AppCompatActivity {
                 }
         );
 
+
+
     }
+
+    void reset(){
+        FirstNameTextInput.setError("");
+        GenderTextInput.setError("");
+
+        EmailTextInput.setError("");
+        PhoneTextInput.setError("");
+        DobTextInput.setError("");
+        PasswordTextInput.setError("");
+    }
+
 }
