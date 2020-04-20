@@ -44,7 +44,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
 
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
     TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText;
-    TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput;
+    TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput, BillTypeTextInput;
     Button CreateButton;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
@@ -60,6 +60,8 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
                         billType);
         BillTypeAutoComplete = findViewById(R.id.BillTypeAutoComplete);
         BillTypeAutoComplete.setAdapter(billTypeAdapter);
+
+        BillTypeTextInput = findViewById(R.id.BillTypeTextInput);
 
         ProviderTextInput = findViewById(R.id.ProviderTextInput);
         UnitUsedTextInput = findViewById(R.id.UnitUsedTextInput);
@@ -106,6 +108,12 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
             @Override
             public void onClick(View view) {
 
+
+                String billTypeStr = BillTypeAutoComplete.getText().toString();
+                if(billTypeStr.equals("")){
+                    BillTypeTextInput.setError("Please choose bill type");
+                    return;
+                }
 
                 String dateStr = BillDateEditText.getText().toString();
                 if(dateStr.equals("")){
