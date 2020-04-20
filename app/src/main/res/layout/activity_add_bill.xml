@@ -152,7 +152,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:text="Cancel" />
+
+            android:text="Cancel"
+            android:textColor="#BC5A5A"
+            app:iconTint="#C26969"
+            app:strokeColor="#CD6666" />
 
         <Space
             android:layout_width="wrap_content"
