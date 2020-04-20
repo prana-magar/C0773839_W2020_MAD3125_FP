@@ -11,13 +11,16 @@
         android:theme="@style/AppTheme">
         <activity android:name=".Activity.AddCustomer"></activity>
         <activity android:name=".Activity.CustomerDetail" />
-        <activity android:name=".Activity.CustomerLister"></activity>
-        <activity android:name=".Activity.LoginActivity">
+        <activity android:name=".Activity.CustomerLister">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity android:name=".Activity.LoginActivity">
+
         </activity>
         <activity android:name=".Activity.SplashActivity" />
     </application>
