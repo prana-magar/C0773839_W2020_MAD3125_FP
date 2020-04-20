@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.example.c0773839_w2020_mad3125_fp.R;
 import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class AddBill extends AppCompatActivity {
     String[] billType = new String[] {"Hydro","Internet","Mobile"};
@@ -23,6 +24,7 @@ public class AddBill extends AppCompatActivity {
 
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
     TextInputEditText UnitUsedEditText,MinutesUsedEditText;
+    TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput;
     Button CreateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +39,36 @@ public class AddBill extends AppCompatActivity {
         BillTypeAutoComplete = findViewById(R.id.BillTypeAutoComplete);
         BillTypeAutoComplete.setAdapter(billTypeAdapter);
 
+        ProviderTextInput = findViewById(R.id.ProviderTextInput);
+        UnitUsedTextInput = findViewById(R.id.UnitUsedTextInput);
+        MinutesUsedTextInput = findViewById(R.id.MinutesUsedTextInput);
+        BillDateTextInput = findViewById(R.id.BillDateTextInput);
+
+
+        UnitUsedEditText = findViewById(R.id.UnitUsedEditText);
+        MinutesUsedEditText = findViewById(R.id.MinutesUsedEditText);
+        CreateButton = findViewById(R.id.CreateButton);
+
+        // default hidden
+        ProviderTextInput.setAlpha(0);
+        UnitUsedTextInput.setAlpha(0);
+        MinutesUsedTextInput.setAlpha(0);
+        BillDateTextInput.setAlpha(0);
+
+
+
 
 
 
         BillTypeAutoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                ProviderTextInput.setAlpha(1);
+                UnitUsedTextInput.setAlpha(1);
+                BillDateTextInput.setAlpha(1);
+                MinutesUsedTextInput.setAlpha(0);
+
+
                 switch (i){
                     case 0:
                         currentProvider = HydroProvider;
@@ -52,6 +78,8 @@ public class AddBill extends AppCompatActivity {
                         break;
                     default:
                         currentProvider = MobileProvider;
+                        MinutesUsedTextInput.setAlpha(1);
+
                 }
 
                 ArrayAdapter<String> providerAdapter =
