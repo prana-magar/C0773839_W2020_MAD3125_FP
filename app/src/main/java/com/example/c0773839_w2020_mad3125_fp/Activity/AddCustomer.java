@@ -81,6 +81,12 @@ public class AddCustomer extends AppCompatActivity {
                             return;
                         }
 
+                        if(!Validation.Phone(phoneStr)){
+                            PhoneTextInput.setError("PhoneNo must be greater than 6 and less than 15");
+                            return;
+                        }
+
+
                         String dobStr = DobEditText.getText().toString();
                         if(dobStr.equals("")){
                             DobTextInput.setError("Date of Birth cant be Empty");
