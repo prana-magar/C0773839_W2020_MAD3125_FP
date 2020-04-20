@@ -45,7 +45,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
     AutoCompleteTextView BillTypeAutoComplete,ProviderAutoComplete;
     TextInputEditText UnitUsedEditText,MinutesUsedEditText,BillDateEditText;
     TextInputLayout ProviderTextInput,UnitUsedTextInput,MinutesUsedTextInput,BillDateTextInput, BillTypeTextInput;
-    Button CreateButton;
+    Button CreateButton, CancelButton;
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +74,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
         ProviderAutoComplete = findViewById(R.id.ProviderAutoComplete);
         BillDateEditText = findViewById(R.id.BillDateEditText);
         CreateButton = findViewById(R.id.CreateButton);
+        CancelButton = findViewById(R.id.CancelButton);
 
         final Intent intent = getIntent();
         Customer customer = (Customer) intent.getSerializableExtra("customer");
@@ -101,7 +102,12 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
         MinutesUsedTextInput.setAlpha(0);
         BillDateTextInput.setAlpha(0);
 
-
+        CancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         CreateButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
