@@ -32,7 +32,7 @@ public class CustomerLister extends AppCompatActivity implements CustomerListAda
         super.onCreate(savedInstanceState);
 
         // remove later
-        ObjectManager.getInstance().loadObjects();
+//        ObjectManager.getInstance().loadObjects();
         setContentView(R.layout.activity_customer_lister);
         recyclerView =  findViewById(R.id.customer_recycler_id);
 
