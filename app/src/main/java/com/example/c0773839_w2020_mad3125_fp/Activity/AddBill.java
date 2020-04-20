@@ -109,11 +109,14 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
             }
         });
 
+
+
         CreateButton.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View view) {
 
+                reset();
 
                 String billTypeStr = BillTypeAutoComplete.getText().toString();
                 if(billTypeStr.equals("")){
@@ -129,6 +132,13 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
                 LocalDate billDateLocalDate = LocalDate.parse(dateStr,formatter);
 
+
+                String providerStr = ProviderAutoComplete.getText().toString();
+                if(providerStr.equals("")){
+                    ProviderTextInput.setError("Cant be empty");
+                    return;
+                }
+
                 String unitConsumedStr = UnitUsedEditText.getText().toString();
                 if(unitConsumedStr.equals("")){
                     UnitUsedTextInput.setError("Unit cant be empty");
@@ -136,11 +146,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
                 }
                 double unitConsumed = Double.parseDouble(unitConsumedStr);
 
-                String providerStr = ProviderAutoComplete.getText().toString();
-                if(providerStr.equals("")){
-                    ProviderTextInput.setError("Cant be empty");
-                    return;
-                }
+
                 System.out.println("provider= "+providerStr);
 
                 BillType billType;
@@ -228,6 +234,15 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
         ProviderAutoComplete = findViewById(R.id.ProviderAutoComplete);
         ProviderAutoComplete.setAdapter(providerAdapter);
 
+    }
+
+    public void reset(){
+
+        BillTypeTextInput.setError("");
+        ProviderTextInput.setError("");
+        UnitUsedTextInput.setError("");
+        MinutesUsedTextInput.setError("");
+        BillDateTextInput.setError("");
     }
 
     @Override
