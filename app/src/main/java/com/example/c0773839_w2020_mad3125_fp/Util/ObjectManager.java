@@ -129,6 +129,39 @@ public class ObjectManager {
 
         this.customerHashMap.put(customer1.getId(),customer1);
 
+
+        // Customer2
+        MobileBill mobileBill2 = new MobileBill("publicMobile_1", LocalDate.of(2018,7,11),fidoPhoneProvider,
+                5,45);
+        this.mobileBillHashMap.put(mobileBill2.getId(), mobileBill2);
+
+        InternetBill internetBill2 = new InternetBill("bell_1",
+                LocalDate.of(2019,5,20),
+                bellInternetProvider,
+                67.8);
+        this.internetBillHashMap.put(internetBill2.getId(),internetBill2);
+
+        Contact contact2 = null;
+        try{
+            contact2 = new Contact("(647)23224444","ram@gmail.com");
+        }
+        catch (Exception e){
+            System.out.println("Cannot create contact");
+            System.out.println(e);
+        }
+
+        Customer customer2 = new Customer(ObjectManager.getInstance().getRandomId(),
+                "Ram",
+                "Thapa",
+                Gender.MALE,LocalDate.of(1993,4,6),
+                "ramthapa",
+                "letmein2",
+                contact2
+        );
+        customer2.addBill(mobileBill2);
+        customer2.addBill(internetBill2);
+        this.customerHashMap.put(customer2.getId(),customer2);
+
     }
 
 
