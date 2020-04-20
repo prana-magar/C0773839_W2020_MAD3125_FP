@@ -36,7 +36,7 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
     TextInputEditText FirstNameEditText,LastNameEditText,EmailEditText,PhoneEditText,DobEditText,PasswordEditText;
     TextInputLayout FirstNameTextInput,GenderTextInput,EmailTextInput,PhoneTextInput,DobTextInput,PasswordTextInput;
     AutoCompleteTextView GenderEditText;
-    Button CreateButton;
+    Button CreateButton,CancelButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -49,6 +49,8 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
         DobEditText = findViewById(R.id.DobEditText);
         PasswordEditText = findViewById(R.id.PasswordEditText);
         CreateButton = findViewById(R.id.CreateButton);
+        CancelButton = findViewById(R.id.CancelButton);
+
 
         FirstNameTextInput = findViewById(R.id.FirstNameTextInput);
         GenderTextInput = findViewById(R.id.GenderTextInput);
@@ -81,7 +83,12 @@ public class AddCustomer extends AppCompatActivity implements DatePickerDialog.O
         GenderEditText = findViewById(R.id.GenderEditText);
         GenderEditText.setAdapter(genderAdapter);
 
-
+        CancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
         CreateButton.setOnClickListener(
                 new View.OnClickListener() {
