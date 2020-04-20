@@ -2,6 +2,7 @@ package com.example.c0773839_w2020_mad3125_fp.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.InternetBill;
 import com.example.c0773839_w2020_mad3125_fp.R;
 
 public class CustomerLister extends AppCompatActivity {
@@ -39,7 +41,8 @@ public class CustomerLister extends AppCompatActivity {
         switch(item.getItemId())
         {
             case R.id.logout:
-                System.out.println("logout clicked");
+                Intent intent = new Intent(CustomerLister.this,LoginActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.add_customer:
