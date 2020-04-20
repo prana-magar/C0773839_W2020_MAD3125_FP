@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
 import com.example.c0773839_w2020_mad3125_fp.Adapter.BillListAdapter;
@@ -15,10 +17,11 @@ import com.example.c0773839_w2020_mad3125_fp.Util.Validation;
 
 public class AddCustomer extends AppCompatActivity {
 
+    String[] genderOptions = new String[] {"Male","Female","Other"};
 
-    TextInputEditText FirstNameEditText,LastNameEditText,GenderEditText,EmailEditText,PhoneEditText,DobEditText,PasswordEditText;
+    TextInputEditText FirstNameEditText,LastNameEditText,EmailEditText,PhoneEditText,DobEditText,PasswordEditText;
     TextInputLayout FirstNameTextInput,GenderTextInput,EmailTextInput,PhoneTextInput,DobTextInput,PasswordTextInput;
-
+    AutoCompleteTextView GenderEditText;
     Button CreateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +42,13 @@ public class AddCustomer extends AppCompatActivity {
         PhoneTextInput = findViewById(R.id.PhoneTextInput);
         DobTextInput = findViewById(R.id.DobTextInput);
         PasswordTextInput = findViewById(R.id.PasswordTextInput);
-
+        ArrayAdapter<String> genderAdapter =
+                new ArrayAdapter<String>(
+                        AddCustomer.this,
+                        R.layout.dropdown_menu_popup_item,
+                        genderOptions);
+        GenderEditText = findViewById(R.id.GenderEditText);
+        GenderEditText.setAdapter(genderAdapter);
 
 
 
