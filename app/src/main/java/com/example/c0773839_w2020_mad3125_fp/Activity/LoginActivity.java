@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        ObjectManager.getInstance().loadObjects();
+//        ObjectManager.getInstance().loadObjects();
 
 
         emailEditText = findViewById(R.id.EmailEditText);

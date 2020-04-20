@@ -51,7 +51,7 @@ public class AddBill extends AppCompatActivity implements DatePickerDialog.OnDat
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_bill);
-        ObjectManager.getInstance().loadObjects();
+//        ObjectManager.getInstance().loadObjects();
 
         ArrayAdapter<String> billTypeAdapter =
                 new ArrayAdapter<String>(

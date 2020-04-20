@@ -16,6 +16,14 @@
         <activity android:name=".Activity.AddCustomer" />
         <activity android:name=".Activity.CustomerDetail" />
         <activity android:name=".Activity.CustomerLister">
+
+
+        </activity>
+        <activity android:name=".Activity.LoginActivity">
+
+
+        </activity>
+        <activity android:name=".Activity.SplashActivity" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -23,8 +31,7 @@
             </intent-filter>
 
         </activity>
-        <activity android:name=".Activity.LoginActivity"></activity>
-        <activity android:name=".Activity.SplashActivity" />
+
     </application>
 
 </manifest>
