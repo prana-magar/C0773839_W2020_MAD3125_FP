@@ -75,13 +75,13 @@
                             android:layout_width="40px"
                             android:layout_height="40px"
                             android:layout_gravity="center_vertical"
-                            app:srcCompat="@drawable/logout">
+                            app:srcCompat="@drawable/mail">
 
 
                         </ImageView>
 
                         <TextView
-                            android:id="@+id/location_id"
+                            android:id="@+id/email_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"
@@ -108,13 +108,13 @@
                             android:layout_height="40px"
                             android:layout_gravity="center_vertical"
                             android:layout_marginRight="5dp"
-                            app:srcCompat="@drawable/logout">
+                            app:srcCompat="@drawable/money">
 
 
                         </ImageView>
 
                         <TextView
-                            android:id="@+id/textViewId"
+                            android:id="@+id/bill_id"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_vertical"

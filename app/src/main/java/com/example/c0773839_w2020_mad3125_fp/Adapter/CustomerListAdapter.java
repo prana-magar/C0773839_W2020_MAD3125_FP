@@ -1,10 +1,8 @@
 package com.example.c0773839_w2020_mad3125_fp.Adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.HttpAuthHandler;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -19,15 +17,18 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
 
     public static class MyViewHolder extends RecyclerView.ViewHolder  implements View.OnClickListener {
 
-        public TextView textView;
         public TextView textViewName;
+        public TextView textViewEmail;
+        public TextView textViewBill;
         OnCardClickListner onCardClickListner;
         public MyViewHolder(@NonNull View itemView, OnCardClickListner onCardClickListner) {
             super(itemView);
             itemView.setOnClickListener(this);
             this.onCardClickListner = onCardClickListner;
-           textView = itemView.findViewById(R.id.textViewId);
+            textViewEmail = itemView.findViewById(R.id.email_id);
             textViewName = itemView.findViewById(R.id.name_id);
+            textViewBill = itemView.findViewById(R.id.bill_id);
+
         }
 
 
@@ -57,8 +58,10 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
     @Override
     public void onBindViewHolder(@NonNull CustomerListAdapter.MyViewHolder holder, int position) {
         Customer customer = customers[position];
-        holder.textView.setText(customer.getId());
+        holder.textViewEmail.setText(customer.getContact().getEmailId());
         holder.textViewName.setText(customer.getFullName());
+        holder.textViewBill.setText(String.valueOf(customer.getTotal()));
+
     }
 
     @Override
