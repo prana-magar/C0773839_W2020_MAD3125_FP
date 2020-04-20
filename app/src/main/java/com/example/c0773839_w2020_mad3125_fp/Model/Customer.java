@@ -35,8 +35,15 @@ public class Customer extends Person {
         this.billDict.put(bill.getId(), bill);
     }
 
-    public ArrayList<Bill> getBills(){
-        return new ArrayList<Bill>(this.billDict.values());
+    public Bill[]  getBills(){
+        Bill[] bills = new Bill[this.billDict.size()];
+        ArrayList<Bill> list = new ArrayList<Bill>(this.billDict.values());
+        int i =0;
+        for(Bill bill: list){
+            bills[i] = bill;
+            i++;
+        }
+        return bills;
     }
 
     public double getTotal(){

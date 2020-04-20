@@ -4,6 +4,8 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.Bill;
+import com.example.c0773839_w2020_mad3125_fp.Model.Bill.BillType;
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.HydroBill;
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.InternetBill;
 import com.example.c0773839_w2020_mad3125_fp.Model.Bill.MobileBill;
@@ -66,6 +68,22 @@ public class ObjectManager {
             i++;
         }
         return customers;
+    }
+
+    public BillType getBillType(Bill bill){
+        String id = bill.getId();
+        for(HydroBill hydroBill: this.hydroBillHashMap.values()){
+            if(hydroBill.getId().equals(id)){
+                return BillType.Hydro;
+            }
+        }
+        for(InternetBill internetBill: this.internetBillHashMap.values()){
+            if(internetBill.getId().equals(id)){
+                return BillType.Internet;
+            }
+        }
+
+        return BillType.Mobile;
     }
 
 

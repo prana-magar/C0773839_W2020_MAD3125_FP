@@ -4,12 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDate;
 
 
-enum BillType{
-    Hydro,
-    Mobile,
-    Internet
 
-}
 
  public abstract class Bill  implements Serializable {
 
