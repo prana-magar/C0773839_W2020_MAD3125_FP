@@ -20,11 +20,13 @@ import com.example.c0773839_w2020_mad3125_fp.Util.ObjectManager;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.example.c0773839_w2020_mad3125_fp.Util.PasswordUtil;
+import com.google.android.material.textfield.TextInputLayout;
 
 public class LoginActivity extends AppCompatActivity {
 
     private String  PREFS_NAME = "REMEMBER_ME_PREF";
     TextInputEditText emailEditText,passwordEditText;
+    TextInputLayout EmailTextInput,PasswordTextInput;
     SwitchMaterial rememberMeSwitch;
     Button loginBtn;
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -38,6 +40,9 @@ public class LoginActivity extends AppCompatActivity {
         emailEditText = findViewById(R.id.EmailEditText);
         passwordEditText = findViewById(R.id.PasswordEditText);
         rememberMeSwitch = findViewById(R.id.remember_switch);
+        EmailTextInput = findViewById(R.id.EmailTextInput);
+        PasswordTextInput = findViewById(R.id.PasswordTextInput);
+
         loginBtn = findViewById(R.id.loginButton);
 
         SharedPreferences pref = getSharedPreferences(PREFS_NAME,MODE_PRIVATE);
@@ -52,15 +57,17 @@ public class LoginActivity extends AppCompatActivity {
         loginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                EmailTextInput.setError("");
+                PasswordTextInput.setError("");
                 String emailStr = emailEditText.getText().toString();
                 if(emailStr.equals("")){
-                    emailEditText.setError("Email cant be empty");
+                    EmailTextInput.setError("Email cant be empty");
                     return;
                 }
 
                 String passwordStr =passwordEditText.getText().toString();
                 if(passwordStr.equals("")){
-                    passwordEditText.setError("Email cant be empty");
+                    PasswordTextInput.setError("Password cant be empty");
                     return;
                 }
 
